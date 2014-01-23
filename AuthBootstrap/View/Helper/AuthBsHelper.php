@@ -5,6 +5,7 @@
  * Date: 13/01/14
  * Time: 10:15
  */
+App::uses('AppHelper', 'View/Helper');
 
 class AuthBsHelper extends AppHelper {
 

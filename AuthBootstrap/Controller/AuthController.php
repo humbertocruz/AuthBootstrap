@@ -21,7 +21,6 @@ class AuthController extends AuthBootstrapAppController {
 			$hashts = $data['hashts'];
 
 			if ($timestamp == $hashts) {
-				echo 'ok';
 				$usuario = $data['usuario'];
 				$menus = $data['menus'];
 				$this->Session->write('menus',$menus);
@@ -31,11 +30,11 @@ class AuthController extends AuthBootstrapAppController {
 			}
 		} else {
 			if ( !$this->Auth->LoggedIn() ) {
-				echo Configure::read('login_url');
-				//$this->redirect(Configure::read('login_url'));
+				//echo Configure::read('login_url');
+				$this->redirect(Configure::read('login_url'));
 			}
 
 		}
-		$this->redirect('/');
+		//$this->redirect('/');
 	}
 }

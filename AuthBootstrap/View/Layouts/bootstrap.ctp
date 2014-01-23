@@ -24,7 +24,11 @@
         ?>
     </head>
     <body>
-        <?php echo $this->Element( 'AuthBootstrap.navbar-top' ); ?>
+        <?php 
+            if ($this->Auth->loggedIn()) {
+                echo $this->Element( 'AuthBootstrap.navbar-top' );
+            }
+        ?>
         <div class="container">
             <?php echo $this->Session->flash( 'flash', array( 'element'=>'AuthBootstrap.flash' ) ); ?>
         	<?php echo $this->fetch( 'content' ); ?>

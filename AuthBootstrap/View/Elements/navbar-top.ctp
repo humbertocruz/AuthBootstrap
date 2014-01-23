@@ -1,5 +1,5 @@
 <?php
-   if ( $this->Session->check('menus') ) {
+   //if ( $this->Session->check('menus') ) {
 
   $supMenu = 0;
   // Encontra o Menu Superior
@@ -75,4 +75,4 @@
     </form>
   </div>
 </nav>
-<?php } ?>
+<?php //} ?>
