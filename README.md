@@ -1,5 +1,5 @@
 
-* Autenticação, Permissões e Twitter Bootstrap *
+**Autenticação, Permissões e Twitter Bootstrap**
 
 * AuthBootstrap *
 
@@ -22,7 +22,7 @@ permissões aos grupos por sistema.
 
 Configure os plugins necessários da seguinte forma:
 
-```
+```php
 // Carrega o Plugin de Autenticação e Bootstrap
 CakePlugin::load(
 	array(
