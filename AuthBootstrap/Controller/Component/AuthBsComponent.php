@@ -5,8 +5,8 @@ class AuthBsComponent extends Component {
 		'Session',
 		'Auth'=>array(
 			'loginAction' => array(
-				'controller' => 'usuarios',
-				'action' => 'login'
+				'controller' => 'auth',
+				'action' => 'authenticate'
 			),
 			'authenticate' => array(
 				'Form' => array(
@@ -46,7 +46,7 @@ class AuthBsComponent extends Component {
 			$controller->set( 'perms', $perms );
 		} else {
 			if ($controller->params['controller'] != 'usuarios' and $controller->params['action'] != 'menus') {
-				$controller->redirect('https://login.vagr.com/menus?sistema_id=1');
+				//$controller->redirect('https://login.vagr.com/menus?sistema_id=1');
 			}
 		}
 

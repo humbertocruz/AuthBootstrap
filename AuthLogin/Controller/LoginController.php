@@ -1,7 +1,7 @@
  <?php
 App::uses('Controller', 'Controller');
 
-class UsuariosController extends AuthLoginAppController {
+class LoginController extends AuthLoginAppController {
 	
 	public $uses = array('AuthLogin.Usuario','AuthLogin.Grupo','AuthLogin.Menu','AuthLogin.Sistema');
 
@@ -13,7 +13,6 @@ class UsuariosController extends AuthLoginAppController {
 	
 	public function login() {
 		if ($this->request->is('post')) {
-			pr( $this->Auth->password( $this->data['Usuario']['senha']) );
 			if ($this->Auth->login()) {
 				if(isset($this->data['Usuario']['sistema_id'])) {
 					$this->Session->setFlash(__('Usuários Logado com Sucesso!'));
@@ -85,13 +84,11 @@ class UsuariosController extends AuthLoginAppController {
 				)
 			);
 			$this->Usuario->Login->save($login);
-
-			$this->set('usuario', json_encode( $usuario ));
-			$this->set('menus', json_encode( $menus ));
-
+			$this->set('data', array(
+				'usuario' => $usuario,
+				'menus' => $menus,
+				'hashts' => Security::hash( intval( time()/10 ), 'md5', true)
+			));
 		}
-		
-		
 	}
-	
 }
