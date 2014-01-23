@@ -7,7 +7,6 @@ class UsuariosController extends AuthLoginAppController {
 
 	public function logout() {
 		$this->Session->delete('menus');
-		$this->Session->delete();
 		$this->Auth->logout();
 		$this->redirect('/');
 	}
