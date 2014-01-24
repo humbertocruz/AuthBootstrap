@@ -8,7 +8,7 @@
         echo $this->Html->meta( 'icon' );
 
         // jQuery
-        echo $this->Html->script( 'https://code.jquery.com/jquery-2.0.3.min.js');
+        echo $this->Html->script( 'http://code.jquery.com/jquery-2.0.3.min.js');
 
         // Bootstrap
         echo $this->Html->css( 'AuthBootstrap./bootstrap/css/bootstrap.min' );

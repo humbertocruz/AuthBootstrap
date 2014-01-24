@@ -1,7 +1,7 @@
 <?php
 /**
- * Grupos
- * Alteração: 04/12/2013
+ * Sistemas
+ * Alteração: 09/12/2013
  * Humberto Cruz - desenvolvimento@apaebrasil.org.br
  * 
  * Variáveis
@@ -9,30 +9,19 @@
  * data - variável gerada pelos métodos e enviada a view
  */
 
-class GruposController extends AppController {
+class AuthASistemasController extends AppController {
 
 	public function index() {
-		$conditions = array();
-		$conditions = array();
-		$conditions['Grupo.sistema_id'] = $this->conditions['sistema_id'];
-
-		$data = $this->Grupo->find('all', array('conditions'=>$conditions));
+		$data = $this->AuthASistema->find('all');
 		$this->set('data', $data);
 	}
-
+	
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Grupo->create();
+			$this->Sistema->create();
 			$data = $this->request->data;
-
-			// Carrega condicoes do sistema
-			$data['Grupo']['sistema_id'] = $this->conditions['sistema_id'];
-
-			pr($data);
-
-			// Tenta salvar
-			if ($this->Grupo->save($data)) {
-				$this->Session->setFlash(__('Grupo salvo com sucesso.'));
+			if ($this->AuthASistema->save($data)) {
+				$this->Session->setFlash(__('Sistema salvo com sucesso.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
             	$this->Session->setFlash(__('Não foi possível gravar.'));
@@ -43,30 +32,29 @@ class GruposController extends AppController {
 	}
 
 	public function edit($id = null) {
-		$this->Grupo->id = $id;
+		$this->AuthASistema->id = $id;
 		
 		if ($this->request->is('put')) {
 			$data = $this->request->data;
-
-			// Tenta atualizar
-			if ($this->Grupo->save($data)) {
-				$this->Session->setFlash(__('Grupo salvo com sucesso.'));
+			if ($this->AuthASistema->save($data)) {
+				$this->Session->setFlash(__('Sistema salvo com sucesso.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Não foi possível gravar.'));
 			}
 		} else {
-			$Grupo = $this->Grupo->read();
-			$this->request->data = $Grupo;
+			$AuthASistema = $this->AuthASistema->read();
+			$this->request->data = $AuthASistema;
 			$this->render('form'); // Precisa estar no final da função
 		}
 	}
-
-	function delete($id = null) {
+	
+	public function delete($id = null) {
 		if ($this->request->is('post')) {
-			$this->Grupo->delete($id);
-			$this->Session->setFlash(__('Grupo excluído com sucesso.'));
+			$this->AuthASistema->delete($id);
+			$this->Session->setFlash(__('Sistema excluído com sucesso.'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}
+
 }

@@ -1,9 +1,9 @@
  <?php
 App::uses('Controller', 'Controller');
 
-class LoginController extends AuthLoginAppController {
+class AuthLLoginController extends AuthLoginAppController {
 	
-	public $uses = array('AuthLogin.Usuario','AuthLogin.Grupo','AuthLogin.Menu','AuthLogin.Sistema');
+	public $uses = array('AuthLogin.AuthLUsuario','AuthLogin.AuthLGrupo','AuthLogin.AuthLMenu','AuthLogin.AuthLSistema');
 
 	public function logout() {
 		$this->Session->delete('menus');
@@ -16,8 +16,8 @@ class LoginController extends AuthLoginAppController {
 			if ($this->Auth->login()) {
 				if(isset($this->data['Usuario']['sistema_id'])) {
 					$this->Session->setFlash(__('Usuários Logado com Sucesso!'));
-					$sistema = $this->Sistema->read(null, $this->data['Usuario']['sistema_id']);
-					$this->redirect($sistema['Sistema']['url']);
+					$AuthLSistema = $this->AuthLSistema->read(null, $this->data['AuthLUsuario']['sistema_id']);
+					$this->redirect($AuthLSistema['AuthLSistema']['url']);
 				}
 				$this->redirect($this->Auth->redirect());
 			} else {
@@ -41,36 +41,36 @@ class LoginController extends AuthLoginAppController {
 			$usuario = $this->Auth->user();
 			$sistema_id = $this->request->query['sistema_id'];
 
-			$sistema = $this->Sistema->read(null, $sistema_id);
-			$this->set('login_url', $sistema['Sistema']['url'].'/authenticate');
+			$AuthLSistema = $this->AuthLSistema->read(null, $sistema_id);
+			$this->set('login_url', $AuthLSistema['AuthLSistema']['url'].'/authenticate');
 			
-			$grupos_usuario = $this->Grupo->GruposUsuario->find('list', array('fields'=>array('grupo_id'),'conditions'=>array('GruposUsuario.usuario_id'=>$usuario['id'])));
+			$grupos_usuario = $this->AuthLGrupo->AuthLGruposUsuario->find('list', array('fields'=>array('grupo_id'),'conditions'=>array('GruposUsuario.usuario_id'=>$usuario['id'])));
 	
 			$grupo_cond = array(
-				'Grupo.sistema_id' => $sistema_id,
-				'Grupo.id'=> $grupos_usuario
+				'AuthLGrupo.sistema_id' => $sistema_id,
+				'AuthLGrupo.id'=> $grupos_usuario
 			);
 
-			$grupo = $this->Grupo->find('first', array('conditions'=>$grupo_cond, 'recursive'=>'0') );
+			$AuthLGrupo = $this->AuthLGrupo->find('first', array('conditions'=>$grupo_cond, 'recursive'=>'0') );
 
 			$menu_cond = array(
-				'Menu.grupo_id' => $grupo['Grupo']['id']
+				'AuthLMenu.grupo_id' => $AuthLGrupo['AuthLGrupo']['id']
 			);
 			
-			$menus = $this->Menu->find('all', array('conditions'=>$menu_cond,'recursive'=>'-1'));
+			$AuthLMenus = $this->AuthLMenu->find('all', array('conditions'=>$menu_cond,'recursive'=>'-1'));
 
 			if ($menus) {
 				$count = 0;
 				foreach ($menus as $menu) {
 					$link_cond = array(
-						'Link.menu_id' => $menu['Menu']['id']
+						'AuthLLink.menu_id' => $menu['AuthLMenu']['id']
 					);
-					$this->Menu->Link->Behaviors->load('Containable');
-					$this->Menu->Link->contain(
-						'GruposLinksPermissoes',
-						'GruposLinksPermissoes.Permissao'
+					$this->AuthLMenu->AuthLLink->Behaviors->load('Containable');
+					$this->AuthLMenu->AuthLLink->contain(
+						'AuthLGruposLinksPermissoes',
+						'AuthLGruposLinksPermissoes.AuthLPermissao'
 					);
-					$menus[$count]['Links'] = $this->Menu->Link->find('threaded', array('conditions'=>$link_cond));
+					$menus[$count]['Links'] = $this->AuthLMenu->AuthLLink->find('threaded', array('conditions'=>$link_cond));
 					$count++;
 				}
 			} else {
@@ -78,12 +78,12 @@ class LoginController extends AuthLoginAppController {
 			}
 
 			$login = array(
-				'Login' => array(
+				'AuthLLogin' => array(
 					'sistema_id' => $sistema_id,
 					'usuario_id' => $usuario['id']
 				)
 			);
-			$this->Usuario->Login->save($login);
+			$this->AuthLUsuario->AuthLLogin->save($login);
 			$this->set('data', array(
 				'usuario' => $usuario,
 				'menus' => $menus,

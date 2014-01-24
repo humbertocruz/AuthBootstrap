@@ -2,6 +2,9 @@
 App::uses('Model', 'Model');
 
 class Menu extends AuthAdminAppModel {
+
+	public $useTable = 'menus';
+
 	public $hasMany = array(
 		'Link' => array(
 			'className' => 'AuthAdmin.Link'

@@ -9,11 +9,11 @@
  * data - variável gerada pelos métodos e enviada a view
  */
 
-class UsuariosController extends AuthAdminAppController {
+class AuthAUsuariosController extends AuthAdminAppController {
 
 	public function index() {
-		$Usuarios = $this->Paginate($this->Usuario);
-		$this->set('data', $Usuarios);
+		$AuthAUsuarios = $this->Paginate($this->AuthAUsuario);
+		$this->set('data', $AuthAUsuarios);
 	}
 
 	public function add() {
@@ -21,9 +21,9 @@ class UsuariosController extends AuthAdminAppController {
 			if ( strlen( $this->request->data['Usuario']['senha'] ) < 8 ) {
 				$this->Session->setFlash(__('Não foi possível gravar.'));
 			} else {
-				$this->Usuario->create();
+				$this->AuthAUsuario->create();
 				$data = $this->request->data;
-				if ($this->Usuario->save($data)) {
+				if ($this->AuthAUsuario->save($data)) {
 					$this->Session->setFlash(__('Usuário salvo com sucesso.'));
                 	$this->redirect(array('action' => 'index'));
             	} else {
@@ -32,25 +32,25 @@ class UsuariosController extends AuthAdminAppController {
 			}
 		}
 		$conditions = array(
-			'Grupo.sistema_id' => $this->conditions_sistema_id
+			'AuthAGrupo.sistema_id' => $this->conditions_sistema_id
 		);
-		$grupos = $this->Usuario->GruposUsuario->Grupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
-		$this->set('grupos', $grupos);
+		$AuthAGrupos = $this->AuthAUsuario->AuthAGruposUsuario->AuthAGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
+		$this->set('AuthAGrupos', $AuthAGrupos);
 		$this->render('form');
 	}
 
 	public function edit($id = null) {
-		$this->Usuario->id = $id;
+		$this->AuthAUsuario->id = $id;
 		
 		if ($this->request->is('put')) {
 			$data = $this->request->data;
-			if ( strlen( $data['Usuario']['senha'] ) < 8 and strlen( $data['Usuario']['senha'] ) > 1 ) {
+			if ( strlen( $data['AuthAUsuario']['senha'] ) < 8 and strlen( $data['AuthAUsuario']['senha'] ) > 1 ) {
 				$this->Session->setFlash(__('Não foi possível gravar.'));
 			} else {
-				if (strlen( $data['Usuario']['senha'] ) == 0) {
-					unset($data['Usuario']['senha']);
+				if (strlen( $data['AuthAUsuario']['senha'] ) == 0) {
+					unset($data['AuthAUsuario']['senha']);
 				}
-				if ($this->Usuario->save($data)) {
+				if ($this->AuthAUsuario->save($data)) {
 					$this->Session->setFlash(__('Usuário salvo com sucesso.'));
 					return $this->redirect(array('action' => 'index'));
 				} else {
@@ -58,19 +58,19 @@ class UsuariosController extends AuthAdminAppController {
 				}
 			}
 		}
-		$Usuario = $this->Usuario->read();
-		$this->request->data = $Usuario;
+		$AuthAUsuario = $this->AuthAUsuario->read();
+		$this->request->data = $AuthAUsuario;
 		$conditions = array(
-			'Grupo.sistema_id' => $this->conditions_sistema_id
+			'AuthAGrupo.sistema_id' => $this->conditions_sistema_id
 		);
-		$grupos = $this->Usuario->GruposUsuario->Grupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
-		$this->set('grupos', $grupos);
+		$AuthAGrupos = $this->AuthAUsuario->AuthAGruposUsuario->AuthAGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
+		$this->set('grupos', $AuthAGrupos);
 		$this->render('form'); // Precisa estar no final da função
 	}
 	
 	public function delete($id = null) {
 		if ($this->request->is('post')) {
-			$this->Usuario->delete($id);
+			$this->AuthAUsuario->delete($id);
 			$this->Session->setFlash(__('Usuário excluído com sucesso.'));
 			return $this->redirect(array('action' => 'index'));
 		}

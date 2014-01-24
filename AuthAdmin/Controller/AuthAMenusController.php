@@ -9,31 +9,31 @@
  * data - variável gerada pelos métodos e enviada a view
  */
 
-class MenusController extends AppController {
+class AuthAMenusController extends AppController {
 
 	public function index() {
-		$this->Menu->Behaviors->load('Containable');
-		$this->Menu->contain(
-			'Grupo'
+		$this->AuthAMenu->Behaviors->load('Containable');
+		$this->AuthAMenu->contain(
+			'AuthAGrupo'
 		);
 
 		$conditions = array();
-		$conditions['Grupo.sistema_id'] = $this->conditions['sistema_id'];
+		$conditions['AuthAGrupo.sistema_id'] = $this->conditions['sistema_id'];
 
-		$data = $this->Menu->find('all', array('conditions'=>$conditions));
+		$data = $this->AuthAMenu->find('all', array('conditions'=>$conditions));
 		$this->set('data', $data);
 	}
 
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->Menu->create();
+			$this->AuthAMenu->create();
 			$data = $this->request->data;
 
 			// Carrega condicoes do sistema
-			$data['Menu']['menu_id'] = $this->conditions_menu_id;
+			$data['AuthAMenu']['menu_id'] = $this->conditions_menu_id;
 
 			// Tenta salvar
-			if ($this->Menu->save($data)) {
+			if ($this->AuthAMenu->save($data)) {
 				$this->Session->setFlash(__('Menu salvo com sucesso.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
@@ -41,43 +41,43 @@ class MenusController extends AppController {
             }
 		} else {
 			$conditions = array(
-				'Grupo.sistema_id' => $this->conditions['sistema_id']
+				'AuthAGrupo.sistema_id' => $this->conditions['sistema_id']
 			);
-			$Grupos = $this->Menu->Grupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
-			$this->set('Grupos', $Grupos);
+			$AuthAGrupos = $this->Menu->AuthAGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
+			$this->set('AuthAGrupos', $Grupos);
 			$this->render('form');
 		}
 	}
 
 	public function edit($id = null) {
-		$this->Menu->id = $id;
+		$this->AuthAMenu->id = $id;
 		
 		if ($this->request->is('put')) {
 			$data = $this->request->data;
 
 			// Tenta atualizar
-			if ($this->Menu->save($data)) {
+			if ($this->AuthAMenu->save($data)) {
 				$this->Session->setFlash(__('Menu salvo com sucesso.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Não foi possível gravar.'));
 			}
 		} else {
-			$Menu = $this->Menu->read();
-			$this->request->data = $Menu;
+			$AuthAMenu = $this->Menu->read();
+			$this->request->data = $AuthAMenu;
 			$conditions = array(
-				'Grupo.sistema_id' => $this->conditions['sistema_id']
+				'AuthAGrupo.sistema_id' => $this->conditions['sistema_id']
 			);
-			$Grupos = $this->Menu->Grupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
-			$this->set('Grupos', $Grupos);
+			$AuthAGrupos = $this->AuthAMenu->AuthAGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
+			$this->set('AuthAGrupos', $AuthAGrupos);
 			$this->render('form'); // Precisa estar no final da função
 		}
 	}
 
 	function delete($id = null) {
 		if ($this->request->is('post')) {
-			$this->Menu->Link->deleteAll(array('Link.menu_id'=>$id));
-			$this->Menu->delete($id);
+			$this->AuthAMenu->AuthALink->deleteAll(array('AuthALink.menu_id'=>$id));
+			$this->AuthAMenu->delete($id);
 
 			$this->Session->setFlash(__('Menu excluído com sucesso.'));
 			return $this->redirect(array('action' => 'index'));
