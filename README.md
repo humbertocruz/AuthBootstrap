@@ -1,3 +1,4 @@
+*Está com um BUG que impede o funcionamento! O que acontece é que há uma confusão entre os controllers de cada Plugin e é chamado o AppController do plugin errado. Estamos tentando corrigir.*
 
 **Autenticação, Permissões e Twitter Bootstrap**
 
