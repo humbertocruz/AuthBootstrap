@@ -17,7 +17,7 @@ permissões aos grupos por sistema.
 
 **Instalação**
 
-Configure os plugins necessários da seguinte forma:
+Carregue o plugin necessários da seguinte forma:
 
 ```php
 // Carrega o Plugin de Autenticação e Bootstrap
