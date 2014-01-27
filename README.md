@@ -27,4 +27,13 @@ Altere a Home da sua aplicação no Config/routes.php:
 Router::connect('/', array('plugin'=>'Ab','controller' => 'AbUsuarios', 'action' => 'home' ));
 ```
 
+Acesse a base de dados e altere a senha do usuario "bootstrap" para a senha que aparece na tela inicial do sistema (gerada a partir do hash no seu servidor). A senha padrão será "authbootstrap" ( sem aspas ).
+
+Edite o arquivo Plugins/Ab/Controllers/AbAppController.php e comente a linha 42 para remover a mensagem sobre a senha inicial.
+
+**Login**
+usuario: authbootstrap
+senha: authbootstrap
+
+
 ** Tabelas **

@@ -30,6 +30,12 @@
             }
         ?>
         <div class="container">
+            <?php if (isset( $init_password ) ) { ?>
+            <div class="alert alert-danger">
+                <h4>Senha Inicial para o usuario "bootstrap"</h4>
+                <?php echo $init_password; ?>
+            </div>
+            <?php } ?>
             <?php echo $this->Session->flash( 'flash', array( 'element'=>'Ab.flash' ) ); ?>
         	<?php echo $this->fetch( 'content' ); ?>
         </div>
