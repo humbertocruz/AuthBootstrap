@@ -30,4 +30,6 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AbAppModel extends Model {
+
+	public $tablePrefix = 'ab_';
 }

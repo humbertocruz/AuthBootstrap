@@ -11,12 +11,14 @@
 
 class AbPermissoesController extends AbAppController {
 
+	public $uses = array('Ab.AbPermissao');
+
 	public function index() {
 		$this->AbPermissao->AbGruposLinksPermissao->AbGrupo->Behaviors->load('Containable');
 		$this->AbPermissao->AbGruposLinksPermissao->AbGrupo->contain(
 			'AbSistema',
 			'AbGruposLinksPermissao',
-			'AGruposLinksPermissao.AbLink',
+			'AbGruposLinksPermissao.AbLink',
 			'AbGruposLinksPermissao.AbPermissao'
 		);
 		$conditions = array(

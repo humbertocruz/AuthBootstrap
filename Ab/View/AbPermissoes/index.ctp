@@ -24,8 +24,8 @@
 				echo $this->Element('Ab.table/row-actions-group', array(
 					'state'=>$state,
 					'label'=>'',
-					'id'=>$permissao['Grupo']['id'],
-					'desc' => $permissao['Grupo']['nome'],
+					'id'=>$permissao['AbGrupo']['id'],
+					'desc' => $permissao['AbGrupo']['nome'],
 					'class' => 'pull-right'
 				)
 			); ?>
