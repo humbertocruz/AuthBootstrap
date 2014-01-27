@@ -12,7 +12,7 @@
 
 **Instalação**
 
-Carregue o plugin necessários da seguinte forma:
+Carregue o plugin da seguinte forma no arquivo Config/bootstrap.php:
 
 ```php
 // Carrega o Plugin de Autenticação e Bootstrap
@@ -21,4 +21,9 @@ CakePlugin::load(
 		'Ab' => array('bootstrap'=>true,'routes' => true)
 	)
 );
+```
+
+Altere a Home da sua aplicação no Config/routes.php:
+```php
+Router::connect('/', array('plugin'=>'Ab','controller' => 'AbUsuarios', 'action' => 'home' ));
 ```
