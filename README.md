@@ -23,7 +23,7 @@ Carregue o plugin necessários da seguinte forma:
 // Carrega o Plugin de Autenticação e Bootstrap
 CakePlugin::load(
 	array(
-		'AuthBootstrap' => array('bootstrap'=>true,'routes' => true)
+		'Ab' => array('bootstrap'=>true,'routes' => true)
 	)
 );
 ```
