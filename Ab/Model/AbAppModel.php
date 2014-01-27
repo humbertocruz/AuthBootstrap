@@ -32,4 +32,5 @@ App::uses('Model', 'Model');
 class AbAppModel extends Model {
 
 	public $tablePrefix = 'ab_';
+	public $useDbConfig = 'authbootstrap';
 }
