@@ -9,12 +9,13 @@ class AbLoginsController extends AbAppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('login','logout','menus');
+		$this->set('formatedName','Login');
 	}
 
 	public function logout() {
 		$this->Session->delete('menus');
 		$this->Auth->logout();
-		$this->redirect('/');
+		
 	}
 	
 	public function login() {
@@ -23,10 +24,9 @@ class AbLoginsController extends AbAppController {
 				$this->Session->setFlash(__('Usuários Logado com Sucesso!'));
 				if(isset($this->data['AbUsuario']['sistema_id'])) {
 					$AbSistema = $this->AbSistema->read(null, $this->data['AbUsuario']['sistema_id']);
-					//$this->redirect($AbSistema['AbSistema']['url']);
-					$this->redirect('/');
+					$this->redirect($AbSistema['AbSistema']['url']);
 				}
-				$this->redirect($this->Auth->redirect());
+				$this->redirect(array('plugin'=>'ab','controller'=>'ab_sistemas','action'=>'view'));
 			} else {
 				$this->Session->setFlash(__('Usuário ou Senha inválidos, tente novamente.'));
 			}

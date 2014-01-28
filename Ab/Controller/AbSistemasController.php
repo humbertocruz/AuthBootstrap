@@ -11,6 +11,28 @@
 
 class AbSistemasController extends AbAppController {
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('formatedName','Sistemas');
+	}
+
+	public function view() {
+		$this->AbSistema->AbGrupo->Behaviors->load('Containable');
+		$this->AbSistema->AbGrupo->contain('AbSistema','AbGruposUsuario');
+
+		$conditions = array(
+			'AbGruposUsuario.usuario_id' => $this->Auth->user()['id']
+		);
+		$AbGrupos = $this->AbSistema->AbGrupo->AbGruposUsuario->find('list', array('fields'=>array('AbGruposUsuario.grupo_id','AbGruposUsuario.grupo_id'),'conditions'=>$conditions));
+		$AbGrupos = explode(',', implode(',', $AbGrupos));
+		$conditions = array(
+			'AbGrupo.id IN' => $AbGrupos
+		);
+
+		$AbSistemas = $this->AbSistema->AbGrupo->find('all', array('conditions'));
+		$this->set('AbSistemas',$AbSistemas);
+	}
+
 	public function index() {
 		$data = $this->AbSistema->find('all');
 		$this->set('data', $data);

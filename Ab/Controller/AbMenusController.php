@@ -11,6 +11,11 @@
 
 class AbMenusController extends AbAppController {
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('formatedName','Menus');
+	}
+
 	public $uses = array('Ab.AbMenu');
 
 	public function index() {

@@ -13,6 +13,11 @@ class AbPermissoesController extends AbAppController {
 
 	public $uses = array('Ab.AbPermissao');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('formatedName','Permissões');
+	}
+
 	public function index() {
 		$this->AbPermissao->AbGruposLinksPermissao->AbGrupo->Behaviors->load('Containable');
 		$this->AbPermissao->AbGruposLinksPermissao->AbGrupo->contain(

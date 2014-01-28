@@ -13,6 +13,11 @@ class AbUsuariosController extends AbAppController {
 
 	public $uses = array('Ab.AbUsuario');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('formatedName','Usuários');
+	}
+
 	public function home() {
 		if (!$this->Session->check('menus')) {
 			//echo (Configure::read('menus_url').'?sistema_id='.Configure::read('sistema_id'));
@@ -31,13 +36,24 @@ class AbUsuariosController extends AbAppController {
 				$this->Session->setFlash(__('Não foi possível gravar.'));
 			} else {
 				$this->AbUsuario->create();
+				$this->AbUsuario->AbGruposUsuario->create();
 				$data = $this->request->data;
-				if ($this->AbUsuario->save($data)) {
-					$this->Session->setFlash(__('Usuário salvo com sucesso.'));
-                	$this->redirect(array('action' => 'index'));
-            	} else {
-            		$this->Session->setFlash(__('Não foi possível gravar.'));
-            	}
+				if ( strlen( $data['AbUsuario']['senha'] ) < 8 and strlen( $data['AbUsuario']['senha'] ) > 1 ) {
+					$this->Session->setFlash(__('Não foi possível gravar, senha pequena.'));
+				} else {
+					if (strlen( $data['AbUsuario']['senha'] ) == 0) {
+						unset($data['AbUsuario']['senha']);
+					} else {
+						$data['AbUsuario']['senha'] = $this->Auth->password($data['AbUsuario']['senha']);
+					}
+					if ($this->AbUsuario->saveAll($data)) {
+						$this->AbUsuario->AbGruposUsuario->save($data['AbGruposUsuario']); // sem isso salva o grupo_id como zero
+						$this->Session->setFlash(__('Usuário salvo com sucesso.'));
+						return $this->redirect(array('action' => 'index'));
+					} else {
+						$this->Session->setFlash(__('Não foi possível gravar.'));
+					}
+				}
 			}
 		}
 		$conditions = array(
@@ -54,12 +70,12 @@ class AbUsuariosController extends AbAppController {
 		if ($this->request->is('put')) {
 			$data = $this->request->data;
 			if ( strlen( $data['AbUsuario']['senha'] ) < 8 and strlen( $data['AbUsuario']['senha'] ) > 1 ) {
-				$this->Session->setFlash(__('Não foi possível gravar.'));
+				$this->Session->setFlash(__('Não foi possível gravar, senha pequena.'));
 			} else {
 				if (strlen( $data['AbUsuario']['senha'] ) == 0) {
 					unset($data['AbUsuario']['senha']);
 				}
-				if ($this->AbUsuario->save($data)) {
+				if ($this->AbUsuario->saveAll($data)) {
 					$this->Session->setFlash(__('Usuário salvo com sucesso.'));
 					return $this->redirect(array('action' => 'index'));
 				} else {

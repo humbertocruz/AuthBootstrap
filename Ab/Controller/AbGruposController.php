@@ -13,6 +13,11 @@ class AbGruposController extends AbAppController {
 
 	public $uses = array('Ab.AbGrupo');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('formatedName','Grupos');
+	}
+
 	public function index() {
 		$conditions = array();
 		$conditions = array();
@@ -43,7 +48,7 @@ class AbGruposController extends AbAppController {
 	}
 
 	public function edit($id = null) {
-		$this->AvGrupo->id = $id;
+		$this->AbGrupo->id = $id;
 		
 		if ($this->request->is('put')) {
 			$data = $this->request->data;

@@ -13,6 +13,11 @@ class AbLinksController extends AbAppController {
 
 	public $uses = array('Ab.AbLink');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->set('formatedName','Links');
+	}
+
 	public function index($menu_id = null) {
 		$conditions = array('AbLink.menu_id'=>$menu_id);
 		$this->set('menu_id', $menu_id);

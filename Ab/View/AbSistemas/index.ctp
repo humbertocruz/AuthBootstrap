@@ -1,10 +1,13 @@
 <?php 
 	// Permissoes
 	$adicionar = ($this->AuthBs->hasPerm('Adicionar',$perms))?(true):(false);
+
+	// Breadcrumb
+	echo $this->Element('Ab.breadcrumb');
+
 	/**
 	* Cria tabela de dados
 	*/
-
 	// Configura STATE ou "cor" da tabela de dados
 	$state = 'info';
 	echo $this->Element('Ab.table/table-create', array(

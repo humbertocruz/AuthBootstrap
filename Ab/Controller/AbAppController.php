@@ -39,13 +39,29 @@ class AbAppController extends AppController {
 
 	public function beforeFilter() {
 		// Remover após configurar a senha do usuario inicial (bootstrap)
-		$this->set('init_password',$this->Auth->password('authbootstrap'));
+		//$this->set('init_password',$this->Auth->password('authbootstrap'));
 		// Copie a senha para o usuario bootstrap no banco de dados
 
 		// Menus
 		if ($this->Session->check('menus')) {
 			$this->set('menus', $this->Session->read('menus'));
 			$this->menus = $this->Session->read('menus');
+		}
+
+		// Breadcrumb
+		switch ($this->action) {
+			case 'index':
+				$this->set('formatedAction','Listagem');
+				break;
+			case 'add':
+				$this->set('formatedAction','Adicionar');
+				break;
+			case 'edit':
+				$this->set('formatedAction','Editar');
+				break;
+			default:
+				$this->set('formatedAction','...');
+				break;
 		}
 
 		// Layout bootstrap

@@ -1,4 +1,8 @@
 <?php 
+
+	// Breadcrumb
+	echo $this->Element('Ab.breadcrumb');
+
 	/**
 	* Cria tabela de dados
 	*/
