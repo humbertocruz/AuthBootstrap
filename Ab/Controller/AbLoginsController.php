@@ -49,7 +49,7 @@ class AbLoginsController extends AbAppController {
 			$sistema_id = $this->request->query['sistema_id'];
 
 			$AbSistema = $this->AbSistema->read(null, $sistema_id);
-			$this->set('login_url', $AbSistema['AbSistema']['url'].'/authenticate');
+			$this->set('sistema_url', $AbSistema['AbSistema']['url'].'/authenticate');
 			
 			$grupos_usuario = $this->AbGrupo->AbGruposUsuario->find('list', array('fields'=>array('grupo_id'),'conditions'=>array('AbGruposUsuario.usuario_id'=>$usuario['id'])));
 	
