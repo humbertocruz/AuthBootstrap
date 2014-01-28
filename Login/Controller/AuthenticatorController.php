@@ -9,7 +9,7 @@
  * data - variável gerada pelos métodos e enviada a view
  */
 
-class AbAuthenticatorController extends AbAppController {
+class AuthenticatorController extends LoginAppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();

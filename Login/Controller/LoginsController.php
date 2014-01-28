@@ -1,7 +1,7 @@
  <?php
 App::uses('Controller', 'Controller');
 
-class AbLoginsController extends AbAppController {
+class LoginsController extends LoginAppController {
 	
 	
 	public $uses = array('Ab.AbUsuario','Ab.AbGrupo','Ab.AbMenu','Ab.AbSistema');

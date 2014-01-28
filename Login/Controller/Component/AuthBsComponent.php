@@ -5,13 +5,13 @@ class AuthBsComponent extends Component {
 		'Session',
 		'Auth'=>array(
 			'loginAction' => array(
-				'plugin' => 'Ab',
-				'controller' => 'AbAuthenticator',
+				'plugin' => 'Login',
+				'controller' => 'Authenticator',
 				'action' => 'authenticate'
 			),
 			'authenticate' => array(
 				'Form' => array(
-					'userModel' => 'Ab.AbUsuario',
+					'userModel' => 'Usuario',
 					'fields' => array(
 						'username' => 'usuario',
 						'password' => 'senha'
@@ -19,7 +19,7 @@ class AuthBsComponent extends Component {
 				)
 			)
 		),
-		'Ab.AuthBs'
+		'Admin.AuthBs'
 	);
 
 	// Permissoes
