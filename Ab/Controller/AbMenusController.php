@@ -50,7 +50,7 @@ class AbMenusController extends AbAppController {
 			$conditions = array(
 				'AbGrupo.sistema_id' => $this->conditions['sistema_id']
 			);
-			$AbGrupos = $this->Menu->AbGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
+			$AbGrupos = $this->AbMenu->AbGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
 			$this->set('AbGrupos', $AbGrupos);
 			$this->render('form');
 		}
