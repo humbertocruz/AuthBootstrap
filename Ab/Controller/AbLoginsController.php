@@ -41,13 +41,12 @@ class AbLoginsController extends AbAppController {
 
 		$isLogged = $this->Auth->loggedIn();
 		$sistema_id = $this->request->query['sistema_id'];
-		
 		if ( !$isLogged ) {
 			//$this->redirect('/login?sistema_id='.$sistema_id);
 		} else {
 			$usuario = $this->Auth->user();
 			$sistema_id = $this->request->query['sistema_id'];
-
+			echo 'ok';
 			$AbSistema = $this->AbSistema->read(null, $sistema_id);
 			$this->set('sistema_url', $AbSistema['AbSistema']['url'].'/authenticate');
 			
