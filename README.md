@@ -21,6 +21,12 @@ CakePlugin::load(
 	)
 );
 ```
+Configure o AuthBootstrap
+```php
+Configure::write('sistema_id','2');
+Configure::write('menus_url','http://login.vagr.com/menus');
+Configure::write('login_url', 'http://login.vagr.com/login');
+```
 
 Altere a Home da sua aplicação no Config/routes.php:
 ```php

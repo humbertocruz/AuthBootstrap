@@ -21,8 +21,6 @@ class AbAuthenticatorController extends AbAppController {
 		if ($this->request->is('post')) {
 			$timestamp = Security::hash( intval( time()/10 ), 'md5', true);
 			$data = json_decode( urldecode( $this->data['json'] ), true );
-
-			
 			$hashts = $data['hashts'];
 
 			if ($timestamp == $hashts) {
@@ -30,10 +28,14 @@ class AbAuthenticatorController extends AbAppController {
 				$menus = $data['menus'];
 				$this->Session->write('menus',$menus);
 				$this->Auth->login($usuario);
+				$this->Session->setFlash(__('Login efetuado com sucesso.'));
+				$this->redirect('/');
 			} else {
 				$this->Session->setFlash(__('Tentativa de invasão do sistema.'));
 			}
+		} else {
+			$this->redirect(Configure::read('menus_url').'?sistema_id='.Configure::read('sistema_id'));
 		}
-		$this->redirect(Configure::read('menus_url').'?sistema_id='.Configure::read('sistema_id'));
+		
 	}
 }

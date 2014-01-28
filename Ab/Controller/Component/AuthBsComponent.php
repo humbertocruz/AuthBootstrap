@@ -57,6 +57,6 @@ class AuthBsComponent extends Component {
 	}
 
 	function initialize(Controller $controller) {
-        //$this->authVars($controller);
+        $this->authVars($controller);
     }
 }

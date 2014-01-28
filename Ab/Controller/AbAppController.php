@@ -32,11 +32,11 @@ class AbAppController extends AppController {
 
 	public function beforeRender() {
 		//Lista dos sistemas para o Menu deste Sistema
-		/*
+		
 		$SistemasMenu = $this->AbSistema->find( 'list', array( 'fields'=>array( 'id', 'nome' ) ) );
 		$SistemasMenu = array( 0=>'Selecione o Sistema' ) + $SistemasMenu;
 		$this->set( 'SistemasMenu', $SistemasMenu );
-		*/
+		
 	}
 
 	public function beforeFilter() {
@@ -48,6 +48,8 @@ class AbAppController extends AppController {
 		if ($this->Session->check('menus')) {
 			$this->set('menus', $this->Session->read('menus'));
 			$this->menus = $this->Session->read('menus');
+
+			$this->set('usuario', $this->Auth->user());
 		}
 
 		// Breadcrumb
@@ -67,7 +69,8 @@ class AbAppController extends AppController {
 		}
 
 		// Layout bootstrap
-		$this->layout = 'Ab.bootstrap';
+		//$this->layout = 'Ab.bootstrap'; //Layout básico
+		$this->layout = 'Ab.bootstrap-admin'; //Layout para o Admin
 
 		/**
 		* Condições de pesquisa pode ser acessada sempre que necessárias. Disponivel em $this->conditions para os controllers
