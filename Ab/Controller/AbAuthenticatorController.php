@@ -34,6 +34,6 @@ class AbAuthenticatorController extends AbAppController {
 				$this->Session->setFlash(__('Tentativa de invasão do sistema.'));
 			}
 		}
-		$this->redirect(Configure::read('login_url'));
+		$this->redirect(Configure::read('menus_url'));
 	}
 }

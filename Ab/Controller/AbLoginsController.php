@@ -43,7 +43,7 @@ class AbLoginsController extends AbAppController {
 		$sistema_id = $this->request->query['sistema_id'];
 		
 		if ( !$isLogged ) {
-			$this->redirect('/login?sistema_id='.$sistema_id);
+			//$this->redirect('/login?sistema_id='.$sistema_id);
 		} else {
 			$usuario = $this->Auth->user();
 			$sistema_id = $this->request->query['sistema_id'];

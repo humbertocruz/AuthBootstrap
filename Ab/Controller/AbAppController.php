@@ -32,9 +32,11 @@ class AbAppController extends AppController {
 
 	public function beforeRender() {
 		//Lista dos sistemas para o Menu deste Sistema
+		/*
 		$SistemasMenu = $this->AbSistema->find( 'list', array( 'fields'=>array( 'id', 'nome' ) ) );
 		$SistemasMenu = array( 0=>'Selecione o Sistema' ) + $SistemasMenu;
 		$this->set( 'SistemasMenu', $SistemasMenu );
+		*/
 	}
 
 	public function beforeFilter() {
