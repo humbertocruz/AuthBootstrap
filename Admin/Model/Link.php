@@ -1,20 +1,20 @@
 <?php
 App::uses('Model', 'Model');
 
-class AbLink extends AbAppModel {
+class Link extends AdminAppModel {
 
 	public $useTable = 'links';
 
 	public $hasMany = array(
-		'AbGruposLinksPermissao' => array(
-			'className' => 'Ab.AbGruposLinksPermissao',
+		'GruposLinksPermissao' => array(
+			'className' => 'Admin.GruposLinksPermissao',
 			'foreignKey' => 'link_id'
 		)
 	);
 
 	public $belongsTo = array(
-		'AbMenu' => array(
-			'className' => 'Ab.AbMenu',
+		'Menu' => array(
+			'className' => 'Admin.Menu',
 			'foreignKey' => 'menu_id'
 		)
 	);

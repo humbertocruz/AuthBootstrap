@@ -9,7 +9,7 @@
  * data - variável gerada pelos métodos e enviada a view
  */
 
-class AbSistemasController extends AbAppController {
+class SistemasController extends AdminAppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();

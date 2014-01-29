@@ -9,7 +9,7 @@
  * data - variável gerada pelos métodos e enviada a view
  */
 
-class AbLinksController extends AbAppController {
+class LinksController extends AdminAppController {
 
 	public $uses = array('Ab.AbLink');
 

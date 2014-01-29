@@ -9,9 +9,9 @@
  * data - variável gerada pelos métodos e enviada a view
  */
 
-class AbUsuariosController extends AbAppController {
+class UsuariosController extends AdminAppController {
 
-	public $uses = array('Ab.AbUsuario');
+	public $uses = array('Admin.Usuario');
 
 	public function beforeFilter() {
 		parent::beforeFilter();

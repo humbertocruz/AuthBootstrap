@@ -9,7 +9,7 @@
  * Permissao data - variável gerada pelos métodos e enviada a view
  */
 
-class AbPermissoesController extends AbAppController {
+class PermissoesController extends AdminAppController {
 
 	public $uses = array('Ab.AbPermissao');
 

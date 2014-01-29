@@ -1,14 +1,13 @@
 <?php
 App::uses('Model', 'Model');
 
-class AbLogin extends AbAppModel {
+class Login extends AdminAppModel {
 
 	public $useTable = 'logins';
 
 	public $belongsTo = array(
-
-		'AbUsuario' => array(
-			'className' => 'Ab.AbUsuario',
+		'Usuario' => array(
+			'className' => 'Admin.Usuario',
 			'foreignKey' => 'usuario_id'
 		)
 	);

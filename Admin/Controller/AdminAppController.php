@@ -1,5 +1,5 @@
 <?php
-class AbAppController extends AppController {
+class AdminAppController extends AppController {
 
 	public $layout = 'bootstrap';
 	public $helpers = array(
@@ -11,8 +11,8 @@ class AbAppController extends AppController {
 		'Ab.AuthBs',
 		'Auth'=>array(
 			'loginAction' => array(
-				'plugin' => 'Ab',
-				'controller' => 'AbAuthenticator',
+				'plugin' => 'Auth',
+				'controller' => 'Authenticator',
 				'action' => 'authenticate'
 			),
 			'authenticate' => array(

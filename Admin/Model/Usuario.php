@@ -1,17 +1,17 @@
 <?php
 App::uses('Model', 'AppModel');
 
-class AbUsuario extends AbAppModel {
+class Usuario extends AdminAppModel {
 
 	public $useTable = 'usuarios';
 
 	public $hasMany = array(
-		'AbGruposUsuario' => array(
-			'className' => 'Ab.AbGruposUsuario',
+		'GruposUsuario' => array(
+			'className' => 'Admin.GruposUsuario',
 			'foreignKey' => 'usuario_id'
 		),
-		'AbLogin' => array(
-			'className' => 'Ab.AbLogin',
+		'Login' => array(
+			'className' => 'Admin.Login',
 			'foreignKey' => 'usuario_id'
 		),
 	);

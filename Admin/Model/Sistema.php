@@ -1,13 +1,13 @@
 <?php
 App::uses('Model', 'Model');
 
-class AbSistema extends AbAppModel {
+class Sistema extends AdminAppModel {
 
 	public $useTable = 'sistemas';
 	
 	public $hasMany = array(
-		'AbGrupo' => array(
-			'className' => 'Ab.AbGrupo',
+		'Grupo' => array(
+			'className' => 'Admin.Grupo',
 			'foreignKey' => 'sistema_id'
 		),
 	);

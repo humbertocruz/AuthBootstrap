@@ -1,17 +1,17 @@
 <?php
 App::uses('Model', 'Model');
 
-class AbGruposUsuario extends AbAppModel {
+class GruposUsuario extends AdminAppModel {
 
 	public $useTable = 'grupos_usuarios';
 	
 	public $belongsTo = array(
-		'AbGrupo' => array(
-			'className' => 'Ab.AbGrupo',
+		'Grupo' => array(
+			'className' => 'Admin.Grupo',
 			'foreignKey' => 'grupo_id'
 		),
-		'AbUsuario' => array(
-			'className' => 'Ab.AbUsuario',
+		'Usuario' => array(
+			'className' => 'Admin.Usuario',
 			'foreignKey' => 'usuario_id'
 		)
 	);
