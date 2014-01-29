@@ -4,11 +4,10 @@ class AdminAppController extends AppController {
 	public $layout = 'bootstrap';
 	public $helpers = array(
 		'Session',
-		'Ab.AuthBs'
+		'Bootstrap.AuthBs'
 	);
 	public $components = array(
 		'Session',
-		'Ab.AuthBs',
 		'Auth'=>array(
 			'loginAction' => array(
 				'plugin' => 'Auth',
@@ -17,7 +16,7 @@ class AdminAppController extends AppController {
 			),
 			'authenticate' => array(
 				'Form' => array(
-					'userModel' => 'Ab.AbUsuario',
+					'userModel' => 'Admin.Usuario',
 					'fields' => array(
 						'username' => 'usuario',
 						'password' => 'senha'
@@ -27,13 +26,13 @@ class AdminAppController extends AppController {
 		)
 	);
 
-	public $uses = array('Ab.AbSistema');
+	public $uses = array('Admin.Sistema');
 
 
 	public function beforeRender() {
 		//Lista dos sistemas para o Menu deste Sistema
 		
-		$SistemasMenu = $this->AbSistema->find( 'list', array( 'fields'=>array( 'id', 'nome' ) ) );
+		$SistemasMenu = $this->Sistema->find( 'list', array( 'fields'=>array( 'id', 'nome' ) ) );
 		$SistemasMenu = array( 0=>'Selecione o Sistema' ) + $SistemasMenu;
 		$this->set( 'SistemasMenu', $SistemasMenu );
 		
@@ -69,8 +68,8 @@ class AdminAppController extends AppController {
 		}
 
 		// Layout bootstrap
-		//$this->layout = 'Ab.bootstrap'; //Layout básico
-		$this->layout = 'Ab.bootstrap-admin'; //Layout para o Admin
+		//$this->layout = 'Bootstrap.bootstrap'; //Layout básico
+		$this->layout = 'Bootstrap.bootstrap-admin'; //Layout para o Admin
 
 		/**
 		* Condições de pesquisa pode ser acessada sempre que necessárias. Disponivel em $this->conditions para os controllers

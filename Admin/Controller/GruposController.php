@@ -11,7 +11,7 @@
 
 class GruposController extends AdminAppController {
 
-	public $uses = array('Ab.AbGrupo');
+	public $uses = array('Admin.Grupo');
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -21,22 +21,22 @@ class GruposController extends AdminAppController {
 	public function index() {
 		$conditions = array();
 		$conditions = array();
-		$conditions['AbGrupo.sistema_id'] = $this->conditions['sistema_id'];
+		$conditions['Grupo.sistema_id'] = $this->conditions['sistema_id'];
 
-		$data = $this->AbGrupo->find('all', array('conditions'=>$conditions));
+		$data = $this->Grupo->find('all', array('conditions'=>$conditions));
 		$this->set('data', $data);
 	}
 
 	public function add() {
 		if ($this->request->is('post')) {
-			$this->AbGrupo->create();
+			$this->Grupo->create();
 			$data = $this->request->data;
 
 			// Carrega condicoes do sistema
-			$data['AbGrupo']['sistema_id'] = $this->conditions['sistema_id'];
+			$data['Grupo']['sistema_id'] = $this->conditions['sistema_id'];
 
 			// Tenta salvar
-			if ($this->AbGrupo->save($data)) {
+			if ($this->Grupo->save($data)) {
 				$this->Session->setFlash(__('Grupo salvo com sucesso.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
@@ -48,28 +48,28 @@ class GruposController extends AdminAppController {
 	}
 
 	public function edit($id = null) {
-		$this->AbGrupo->id = $id;
+		$this->Grupo->id = $id;
 		
 		if ($this->request->is('put')) {
 			$data = $this->request->data;
 
 			// Tenta atualizar
-			if ($this->AbGrupo->save($data)) {
+			if ($this->Grupo->save($data)) {
 				$this->Session->setFlash(__('Grupo salvo com sucesso.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Não foi possível gravar.'));
 			}
 		} else {
-			$AbGrupo = $this->AbGrupo->read();
-			$this->request->data = $AbGrupo;
+			$Grupo = $this->Grupo->read();
+			$this->request->data = $Grupo;
 			$this->render('form'); // Precisa estar no final da função
 		}
 	}
 
 	function delete($id = null) {
 		if ($this->request->is('post')) {
-			$this->AbGrupo->delete($id);
+			$this->Grupo->delete($id);
 			$this->Session->setFlash(__('Grupo excluído com sucesso.'));
 			return $this->redirect(array('action' => 'index'));
 		}

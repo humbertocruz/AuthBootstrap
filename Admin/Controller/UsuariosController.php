@@ -26,28 +26,28 @@ class UsuariosController extends AdminAppController {
 	}
 
 	public function index() {
-		$AbUsuarios = $this->Paginate($this->AbUsuario);
-		$this->set('data', $AbUsuarios);
+		$Usuarios = $this->Paginate($this->Usuario);
+		$this->set('data', $Usuarios);
 	}
 
 	public function add() {
 		if ($this->request->is('post')) {
-			if ( strlen( $this->request->data['AbUsuario']['senha'] ) < 8 ) {
+			if ( strlen( $this->request->data['Usuario']['senha'] ) < 8 ) {
 				$this->Session->setFlash(__('Não foi possível gravar.'));
 			} else {
-				$this->AbUsuario->create();
-				$this->AbUsuario->AbGruposUsuario->create();
+				$this->Usuario->create();
+				$this->Usuario->GruposUsuario->create();
 				$data = $this->request->data;
-				if ( strlen( $data['AbUsuario']['senha'] ) < 8 and strlen( $data['AbUsuario']['senha'] ) > 1 ) {
+				if ( strlen( $data['Usuario']['senha'] ) < 8 and strlen( $data['Usuario']['senha'] ) > 1 ) {
 					$this->Session->setFlash(__('Não foi possível gravar, senha pequena.'));
 				} else {
-					if (strlen( $data['AbUsuario']['senha'] ) == 0) {
-						unset($data['AbUsuario']['senha']);
+					if (strlen( $data['Usuario']['senha'] ) == 0) {
+						unset($data['Usuario']['senha']);
 					} else {
-						$data['AbUsuario']['senha'] = $this->Auth->password($data['AbUsuario']['senha']);
+						$data['Usuario']['senha'] = $this->Auth->password($data['Usuario']['senha']);
 					}
-					if ($this->AbUsuario->saveAll($data)) {
-						$this->AbUsuario->AbGruposUsuario->save($data['AbGruposUsuario']); // sem isso salva o grupo_id como zero
+					if ($this->Usuario->saveAll($data)) {
+						$this->Usuario->GruposUsuario->save($data['GruposUsuario']); // sem isso salva o grupo_id como zero
 						$this->Session->setFlash(__('Usuário salvo com sucesso.'));
 						return $this->redirect(array('action' => 'index'));
 					} else {
@@ -57,25 +57,25 @@ class UsuariosController extends AdminAppController {
 			}
 		}
 		$conditions = array(
-			'AbGrupo.sistema_id' => $this->conditions_sistema_id
+			'Grupo.sistema_id' => $this->conditions_sistema_id
 		);
-		$AbGrupos = $this->AbUsuario->AbGruposUsuario->AbGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
-		$this->set('AbGrupos', $AbGrupos);
+		$Grupos = $this->Usuario->GruposUsuario->Grupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
+		$this->set('Grupos', $Grupos);
 		$this->render('form');
 	}
 
 	public function edit($id = null) {
-		$this->AbUsuario->id = $id;
+		$this->Usuario->id = $id;
 		
 		if ($this->request->is('put')) {
 			$data = $this->request->data;
-			if ( strlen( $data['AbUsuario']['senha'] ) < 8 and strlen( $data['AbUsuario']['senha'] ) > 1 ) {
+			if ( strlen( $data['Usuario']['senha'] ) < 8 and strlen( $data['Usuario']['senha'] ) > 1 ) {
 				$this->Session->setFlash(__('Não foi possível gravar, senha pequena.'));
 			} else {
-				if (strlen( $data['AbUsuario']['senha'] ) == 0) {
-					unset($data['AbUsuario']['senha']);
+				if (strlen( $data['Usuario']['senha'] ) == 0) {
+					unset($data['Usuario']['senha']);
 				}
-				if ($this->AbUsuario->saveAll($data)) {
+				if ($this->Usuario->saveAll($data)) {
 					$this->Session->setFlash(__('Usuário salvo com sucesso.'));
 					return $this->redirect(array('action' => 'index'));
 				} else {
@@ -83,19 +83,19 @@ class UsuariosController extends AdminAppController {
 				}
 			}
 		}
-		$AbUsuario = $this->AbUsuario->read();
-		$this->request->data = $AbUsuario;
+		$Usuario = $this->Usuario->read();
+		$this->request->data = $Usuario;
 		$conditions = array(
-			'AbGrupo.sistema_id' => $this->conditions_sistema_id
+			'Grupo.sistema_id' => $this->conditions_sistema_id
 		);
-		$AbGrupos = $this->AbUsuario->AbGruposUsuario->AbGrupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
-		$this->set('AbGrupos', $AbGrupos);
+		$Grupos = $this->Usuario->GruposUsuario->Grupo->find('list', array('fields'=>array('id','nome'),'conditions'=>$conditions));
+		$this->set('Grupos', $Grupos);
 		$this->render('form'); // Precisa estar no final da função
 	}
 	
 	public function delete($id = null) {
 		if ($this->request->is('post')) {
-			$this->AbUsuario->delete($id);
+			$this->Usuario->delete($id);
 			$this->Session->setFlash(__('Usuário excluído com sucesso.'));
 			return $this->redirect(array('action' => 'index'));
 		}

@@ -1,12 +1,12 @@
 <?php
-	if (isset($this->data['AbLink']['icon'])) 
-		$icon = $this->data['AbLink']['icon'];
+	if (isset($this->data['Link']['icon'])) 
+		$icon = $this->data['Link']['icon'];
 	else 
 		$icon = '';
 
-	echo $this->Element('Ab.breadcrumb');
+	echo $this->Element('breadcrumb');
 
-	echo $this->Form->create('AbLink', array('role'=>'form', 'class' => 'form-vertical'));
+	echo $this->Form->create('Link', array('role'=>'form', 'class' => 'form-vertical'));
 	echo $this->Form->input('text', array('div'=>'form-group','class'=>'form-control'));
 	echo $this->Form->input('plugin', array('div'=>'form-group','class'=>'form-control'));
 	echo $this->Form->input('controller', array('div'=>'form-group','class'=>'form-control'));

@@ -4,9 +4,9 @@
 	else 
 		$icon = '';
 
-	echo $this->Element('Ab.breadcrumb');
+	echo $this->Element('Admin.breadcrumb');
 
-	echo $this->Form->create('AbSistema', array('role'=>'form', 'class' => 'form-vertical'));
+	echo $this->Form->create('Sistema', array('role'=>'form', 'class' => 'form-vertical'));
 	echo $this->Form->input('nome', array('div'=>'form-group','class'=>'form-control'));
 	echo $this->Form->input('url', array('div'=>'form-group','class'=>'form-control'));
 	echo $this->Form->input('icone', array('type'=>'file', 'after' => '<span class="help-block">'.$icon.'</span>', 'div'=>'form-group','class'=>'form-control'));

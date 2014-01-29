@@ -3,7 +3,7 @@
 	$adicionar = ($this->AuthBs->hasPerm('Adicionar',$perms))?(true):(false);
 
 	// Breadcrumb
-	echo $this->Element('Ab.breadcrumb');
+	echo $this->Element('Bootstrap.breadcrumb');
 
 	/**
 	* Cria tabela de dados
@@ -12,7 +12,7 @@
 	// Configura STATE ou "cor" da tabela de dados
 	$state = 'info';
 	
-	echo $this->Element('Ab.table/table-create', array(
+	echo $this->Element('Bootstrap.table/table-create', array(
 		'state'=>$state, 
 		'title'=>'Menus', 
 		// Campos da tabela
@@ -26,16 +26,16 @@
 		<td>
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('Ab.table/row-actions', array(
+				echo $this->Element('Bootstrap.table/row-actions', array(
 					'state'=>$state,
 					'label'=>'',
-					'id'=>$sistema['AbMenu']['id'],
-					'desc' => $sistema['AbMenu']['title']
+					'id'=>$sistema['Menu']['id'],
+					'desc' => $sistema['Menu']['title']
 				)
 			); ?>
 		</td>
-		<td><?php echo $sistema['AbMenu']['title']; ?></td>
-		<td><?php echo $sistema['AbGrupo']['nome']; ?></td>
+		<td><?php echo $sistema['Menu']['title']; ?></td>
+		<td><?php echo $sistema['Grupo']['nome']; ?></td>
 	</tr>
 	<?php } ?>
 	</table>
@@ -50,4 +50,4 @@
 			)
 		)):(''); ?>
 	</div>
-<?php echo $this->Element('Ab.table/table-end'); ?>
+<?php echo $this->Element('Bootstrap.table/table-end'); ?>

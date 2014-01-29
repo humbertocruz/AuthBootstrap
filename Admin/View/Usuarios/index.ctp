@@ -3,7 +3,7 @@
 	$adicionar = ($this->AuthBs->hasPerm('Adicionar',$perms))?(true):(false);
 
 	// Breadcrumb
-	echo $this->Element('Ab.breadcrumb');
+	echo $this->Element('Bootstrap.breadcrumb');
 
 	/**
 	* Cria tabela de dados
@@ -12,7 +12,7 @@
 	// Configura STATE ou "cor" da tabela de dados
 	$state = 'info';
 	
-	echo $this->Element('Ab.table/table-create', array(
+	echo $this->Element('Bootstrap.table/table-create', array(
 		'state'=>$state, 
 		'title'=>'Usuários', 
 		// Campos da tabela
@@ -27,17 +27,17 @@
 		<td>
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('Ab.table/row-actions', array(
+				echo $this->Element('Bootstrap..table/row-actions', array(
 					'state'=>$state,
 					'label'=>'',
-					'id'=>$usuario['AbUsuario']['id'],
-					'desc' => $usuario['AbUsuario']['nome']
+					'id'=>$usuario['Usuario']['id'],
+					'desc' => $usuario['Usuario']['nome']
 				)
 			); ?>
 		</td>
-		<td><?php echo $usuario['AbUsuario']['nome']; ?></td>
-		<td><?php echo $usuario['AbUsuario']['usuario']; ?></td>
-		<td><?php echo $this->AuthBs->brdate( $usuario['AbUsuario']['modified'] ); ?></td>
+		<td><?php echo $usuario['Usuario']['nome']; ?></td>
+		<td><?php echo $usuario['Usuario']['usuario']; ?></td>
+		<td><?php echo $this->AuthBs->brdate( $usuario['Usuario']['modified'] ); ?></td>
 	</tr>
 	<?php } ?>
 	</table>
@@ -52,4 +52,4 @@
 			)
 		)):(''); ?>
 	</div>
-<?php echo $this->Element('Ab.table/table-end'); ?>
+<?php echo $this->Element('Bootstrap.table/table-end'); ?>

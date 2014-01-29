@@ -11,7 +11,7 @@
 
 class PermissoesController extends AdminAppController {
 
-	public $uses = array('Ab.AbPermissao');
+	public $uses = array('Admin.Permissao');
 
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -19,59 +19,59 @@ class PermissoesController extends AdminAppController {
 	}
 
 	public function index() {
-		$this->AbPermissao->AbGruposLinksPermissao->AbGrupo->Behaviors->load('Containable');
-		$this->AbPermissao->AbGruposLinksPermissao->AbGrupo->contain(
-			'AbSistema',
-			'AbGruposLinksPermissao',
-			'AbGruposLinksPermissao.AbLink',
-			'AbGruposLinksPermissao.AbPermissao'
+		$this->Permissao->GruposLinksPermissao->Grupo->Behaviors->load('Containable');
+		$this->Permissao->GruposLinksPermissao->Grupo->contain(
+			'Sistema',
+			'GruposLinksPermissao',
+			'GruposLinksPermissao.Link',
+			'GruposLinksPermissao.Permissao'
 		);
 		$conditions = array(
-			'AbGrupo.sistema_id' => $this->conditions['sistema_id']
+			'Grupo.sistema_id' => $this->conditions['sistema_id']
 		);
-		$data = $this->AbPermissao->AbGruposLinksPermissao->AbGrupo->find('all',array('conditions'=>$conditions));
+		$data = $this->Permissao->GruposLinksPermissao->Grupo->find('all',array('conditions'=>$conditions));
 		$this->set('data', $data);
 	}
 
 	public function add($grupo_id = null) {
 		if ($this->request->is('post')) {
-			$this->AbPermissao->AbGruposLinksPermissao->create();
+			$this->Permissao->GruposLinksPermissao->create();
 			$data = $this->request->data;
 			// Carrega condicoes do sistema
-			$data['AbGruposLinksPermissao']['grupo_id'] = $grupo_id;
+			$data['GruposLinksPermissao']['grupo_id'] = $grupo_id;
 			// Tenta salvar
-			if ($this->AbPermissao->AbGruposLinksPermissao->save($data)) {
+			if ($this->Permissao->GruposLinksPermissao->save($data)) {
 				$this->Session->setFlash(__('Permissao salvo com sucesso.'));
                 return $this->redirect(array('action' => 'index'));
             } else {
             	$this->Session->setFlash(__('Não foi possível gravar.'));
             }
 		} else {
-			$AbMenus = $this->AbPermissao->AbGruposLinksPermissao->AbLink->AbMenu->find(
+			$Menus = $this->Permissao->GruposLinksPermissao->Link->Menu->find(
 				'list', 
 					array(
 						'fields'=>array('id'),
-						'conditions'=>array('AbMenu.grupo_id'=>$grupo_id)
+						'conditions'=>array('Menu.grupo_id'=>$grupo_id)
 					)
 			);
-			$this->set('AbLinks', $this->AbPermissao->AbGruposLinksPermissao->AbLink->find(
+			$this->set('Links', $this->Permissao->GruposLinksPermissao->Link->find(
 				'list', 
 					array(
 						'fields'=>array('id','text'),
 						'conditions' => array(
-							'AbLink.menu_id' => $AbMenus
+							'Link.menu_id' => $Menus
 						)
 					)
 				)
 			);
-			$this->set('AbPermissoes', $this->AbPermissao->find('list', array('fields'=>array('id','nome'))));
+			$this->set('Permissoes', $this->Permissao->find('list', array('fields'=>array('id','nome'))));
 		}
 		$this->render('form');
 	}
 
 	function delete($id = null) {
 		if ($this->request->is('post')) {
-			$this->AbPermissao->AbGruposLinksPermissao->delete($id);
+			$this->Permissao->GruposLinksPermissao->delete($id);
 			$this->Session->setFlash(__('Permissao excluído com sucesso.'));
 			return $this->redirect(array('action' => 'index'));
 		}

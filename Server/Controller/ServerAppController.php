@@ -1,5 +1,5 @@
 <?php
-class LoginAppController extends AppController {
+class ServerAppController extends AppController {
 
 	public $layout = 'bootstrap';
 	public $helpers = array(
@@ -8,16 +8,15 @@ class LoginAppController extends AppController {
 	);
 	public $components = array(
 		'Session',
-		'Login.AuthBs',
 		'Auth'=>array(
 			'loginAction' => array(
-				'plugin' => 'Login',
+				'plugin' => 'Auth',
 				'controller' => 'Authenticator',
 				'action' => 'authenticate'
 			),
 			'authenticate' => array(
 				'Form' => array(
-					'userModel' => 'Usuario',
+					'userModel' => 'Server.Usuario',
 					'fields' => array(
 						'username' => 'usuario',
 						'password' => 'senha'
@@ -30,16 +29,6 @@ class LoginAppController extends AppController {
 	public $uses = array('Sistema');
 
 
-	public function beforeRender() {
-		//Lista dos sistemas para o Menu deste Sistema
-		/*
-		$SistemasMenu = $this->Sistema->find( 'list', array( 'fields'=>array( 'id', 'nome' ) ) );
-		$SistemasMenu = array( 0=>'Selecione o Sistema' ) + $SistemasMenu;
-		$this->set( 'SistemasMenu', $SistemasMenu );
-		*/
-		
-	}
-
 	public function beforeFilter() {
 		// Remover após configurar a senha do usuario inicial (bootstrap)
 		//$this->set('init_password',$this->Auth->password('authbootstrap'));
@@ -49,7 +38,6 @@ class LoginAppController extends AppController {
 		if ($this->Session->check('menus')) {
 			$this->set('menus', $this->Session->read('menus'));
 			$this->menus = $this->Session->read('menus');
-
 			$this->set('usuario', $this->Auth->user());
 		}
 
@@ -70,7 +58,7 @@ class LoginAppController extends AppController {
 		}
 
 		// Layout bootstrap
-		//$this->layout = 'Ab.bootstrap'; //Layout básico
+		//$this->layout = 'Bootstrap.bootstrap'; //Layout básico
 		$this->layout = 'Bootstrap.bootstrap'; //Layout para o Admin
 
 		/**

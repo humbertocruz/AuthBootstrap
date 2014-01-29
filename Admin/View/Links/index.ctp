@@ -3,7 +3,7 @@
 	$adicionar = ($this->AuthBs->hasPerm('Adicionar',$perms))?(true):(false);
 
 	// Breadcrumb
-	echo $this->Element('Ab.breadcrumb');
+	echo $this->Element('Bootstrap.breadcrumb');
 
 	/**
 	* Cria tabela de dados
@@ -14,14 +14,14 @@
 	
 	echo '<div class="panel panel-default"><div class="panel-body">';
 	
-	echo $this->Form->create('AbLink', array('type' => 'get','class'=>'form-inline','role'=>'form','action'=>'index'));
-	echo $this->Form->input('AbSistema.menu_id', array('value'=>$menu_id, 'type'=>'select', 'div'=>'form-group', 'label'=>false, 'options'=>array($menus_list), 'class'=>'form-control'));
+	echo $this->Form->create('Link', array('type' => 'get','class'=>'form-inline','role'=>'form','action'=>'index'));
+	echo $this->Form->input('Sistema.menu_id', array('value'=>$menu_id, 'type'=>'select', 'div'=>'form-group', 'label'=>false, 'options'=>array($menus_list), 'class'=>'form-control'));
 	echo $this->Form->end();
 	
 	echo '</div></div>';
 
 	// Inicia tabela de dados
-	echo $this->Element('Ab.table/table-create', array(
+	echo $this->Element('table/table-create', array(
 		'state'=>$state, 
 		'title'=>'Links', 
 		// Campos da tabela
@@ -37,36 +37,36 @@
 		<td>
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('Ab.table/row-actions-with-add', array(
+				echo $this->Element('table/row-actions-with-add', array(
 					'state'=>'success',
 					'label'=>'',
-					'id'=>$link_pai['AbLink']['id'],
+					'id'=>$link_pai['Link']['id'],
 					'menu_id' => $menu_id,
-					'desc' => $link_pai['AbLink']['text']
+					'desc' => $link_pai['Link']['text']
 				)
 			); ?>
 		</td>
-		<td><?php echo $link_pai['AbLink']['text']; ?></td>
+		<td><?php echo $link_pai['Link']['text']; ?></td>
 		<td>---</td>
-		<td><?php echo $link_pai['AbLink']['orderby']; ?></td>
+		<td><?php echo $link_pai['Link']['orderby']; ?></td>
 	</tr>
 	<?php foreach($link_pai['children'] as $link_filho) { ?>
 	<tr>
 		<td>&nbsp;&nbsp;&nbsp;
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('Ab.table/row-actions', array(
+				echo $this->Element('table/row-actions', array(
 					'state'=>$state,
 					'label'=>'',
-					'id'=>$link_filho['AbLink']['id'],
+					'id'=>$link_filho['Link']['id'],
 					'menu_id' => $menu_id,
-					'desc' => $link_filho['AbLink']['text']
+					'desc' => $link_filho['Link']['text']
 				)
 			); ?>
 		</td>
-		<td>&nbsp;&nbsp;&nbsp;<?php echo $link_filho['AbLink']['text']; ?></td>
-		<td>&nbsp;&nbsp;&nbsp;<?php echo $link_filho['AbLink']['controller'].'/'.$link_filho['AbLink']['action']; ?></td>
-		<td>&nbsp;&nbsp;&nbsp;<?php echo $link_filho['AbLink']['orderby']; ?></td>
+		<td>&nbsp;&nbsp;&nbsp;<?php echo $link_filho['Link']['text']; ?></td>
+		<td>&nbsp;&nbsp;&nbsp;<?php echo $link_filho['Link']['controller'].'/'.$link_filho['Link']['action']; ?></td>
+		<td>&nbsp;&nbsp;&nbsp;<?php echo $link_filho['Link']['orderby']; ?></td>
 	</tr>
 	<?php } ?>
 	<?php } ?>
@@ -82,11 +82,11 @@
 			)
 		)):(''); ?>
 	</div>
-<?php echo $this->Element('Ab.table/table-end'); ?>
+<?php echo $this->Element('table/table-end'); ?>
 
 <script>
 $(document).ready(function() {
-	$('#AbSistemaMenuId').change(function(){
+	$('#SistemaMenuId').change(function(){
 		location.href = $(this).parents('form').attr('action')+'/index/'+$(this).val();
 	});
 });

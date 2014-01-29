@@ -29,7 +29,7 @@ App::uses('Model', 'Model');
  *
  * @package       app.Model
  */
-class LoginAppModel extends Model {
+class ServerAppModel extends Model {
 
 	public $tablePrefix = 'ab_';
 	public $useDbConfig = 'authbootstrap';
