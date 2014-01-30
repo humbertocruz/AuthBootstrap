@@ -4,7 +4,7 @@
 	else 
 		$icon = '';
 
-	echo $this->Element('Admin.breadcrumb');
+	echo $this->Element('Bootstrap.breadcrumb');
 
 	$orderby_options = array(
 		'text' => 'Alfabética',

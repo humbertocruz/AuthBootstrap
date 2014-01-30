@@ -12,7 +12,7 @@
 	// Configura STATE ou "cor" da tabela de dados
 	$state = 'info';
 	
-	echo $this->Element('Boootstrap.table/table-create', array(
+	echo $this->Element('Bootstrap.table/table-create', array(
 		'state'=>$state, 
 		'title'=>'Grupos', 
 		// Campos da tabela
@@ -25,7 +25,7 @@
 		<td>
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('Boootstrap.table/row-actions', array(
+				echo $this->Element('Bootstrap.table/row-actions', array(
 					'state'=>$state,
 					'label'=>'',
 					'id'=>$sistema['Grupo']['id'],
@@ -48,4 +48,4 @@
 			)
 		)):(''); ?>
 	</div>
-<?php echo $this->Element('Boootstrap.table/table-end'); ?>
+<?php echo $this->Element('Bootstrap.table/table-end'); ?>

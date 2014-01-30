@@ -21,7 +21,7 @@
 	echo '</div></div>';
 
 	// Inicia tabela de dados
-	echo $this->Element('table/table-create', array(
+	echo $this->Element('Bootstrap.table/table-create', array(
 		'state'=>$state, 
 		'title'=>'Links', 
 		// Campos da tabela
@@ -37,7 +37,7 @@
 		<td>
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('table/row-actions-with-add', array(
+				echo $this->Element('Bootstrap.table/row-actions-with-add', array(
 					'state'=>'success',
 					'label'=>'',
 					'id'=>$link_pai['Link']['id'],
@@ -55,7 +55,7 @@
 		<td>&nbsp;&nbsp;&nbsp;
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('table/row-actions', array(
+				echo $this->Element('Bootstrap.table/row-actions', array(
 					'state'=>$state,
 					'label'=>'',
 					'id'=>$link_filho['Link']['id'],
@@ -82,7 +82,7 @@
 			)
 		)):(''); ?>
 	</div>
-<?php echo $this->Element('table/table-end'); ?>
+<?php echo $this->Element('Bootstrap.table/table-end'); ?>
 
 <script>
 $(document).ready(function() {

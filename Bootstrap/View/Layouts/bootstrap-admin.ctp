@@ -8,11 +8,11 @@
 		echo $this->Html->meta( 'icon' );
 
 		// jQuery
-		echo $this->Html->script( 'Bootstrap./bootstrap/jquery-2.1.0.min.js');
+		echo $this->Html->script( '/bootstrap/jquery-2.1.0.min.js' );
 
 		// Bootstrap
-		echo $this->Html->css( 'Bootstrap./bootstrap/css/bootstrap.min' );
-		echo $this->Html->script( 'Bootstrap./bootstrap/js/bootstrap.min' );
+		echo $this->Html->css( '/bootstrap/css/bootstrap.min' );
+		echo $this->Html->script( '/bootstrap/js/bootstrap.min' );
 
 		echo $this->fetch( 'meta' );
 		echo $this->fetch( 'css' );
@@ -20,7 +20,7 @@
 
 		// AuthBootstrap
 		echo $this->Html->css('Bootstrap.authbootstrap.min');
-		echo $this->Html->script( 'Bootstrap.authbootstrap' );
+		//echo $this->Html->script( 'Bootstrap.authbootstrap' );
 		?>
 	</head>
 	<body>

@@ -27,7 +27,7 @@
 		<td>
 			<?php 
 				// Acation de cada linha
-				echo $this->Element('Bootstrap..table/row-actions', array(
+				echo $this->Element('Bootstrap.table/row-actions', array(
 					'state'=>$state,
 					'label'=>'',
 					'id'=>$usuario['Usuario']['id'],

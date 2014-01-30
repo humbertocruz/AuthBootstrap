@@ -7,7 +7,7 @@ class GruposLinksPermissao extends ServerAppModel {
 
 	public $belongsTo = array(
 		'Permissao' => array(
-			'className' => 'Server.Sistema',
+			'className' => 'Server.Permissao',
 			'foreignKey' => 'permissao_id'
 		)
 	);

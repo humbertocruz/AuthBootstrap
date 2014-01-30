@@ -4,7 +4,7 @@
 	else 
 		$icon = '';
 
-	echo $this->Element('Admin.breadcrumb');
+	echo $this->Element('Bootstrap.breadcrumb');
 
 	echo $this->Form->create('Sistema', array('role'=>'form', 'class' => 'form-vertical'));
 	echo $this->Form->input('nome', array('div'=>'form-group','class'=>'form-control'));

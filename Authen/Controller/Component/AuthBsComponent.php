@@ -19,17 +19,17 @@ class AuthBsComponent extends Component {
 				)
 			)
 		),
-		'Admin.AuthBs'
+		'Authen.AuthBs'
 	);
 
 	// Permissoes
 	public function calcPerms($menus = null) {
 		$perms = array();
 		foreach ($menus as $menu) {
-			foreach ($menu['AbLinks'] as $link) {
+			foreach ($menu['Links'] as $link) {
 				foreach ($link['children'] as $link_sub) {
-					foreach ($link_sub['AbGruposLinksPermissao'] as $perm) {
-						$perms[$link_sub['AbLink']['controller']][$link_sub['AbLink']['action']][$perm['AbPermissao']['nome']] = true;
+					foreach ($link_sub['GruposLinksPermissao'] as $perm) {
+						$perms[$link_sub['Link']['controller']][$link_sub['Link']['action']][$perm['Permissao']['nome']] = true;
 					}
 				}
 			}
