@@ -26,9 +26,9 @@ CakePlugin::load(
 ```
 Configure o AuthBootstrap
 ```php
-Configure::write('sistema_id','2');
-Configure::write('menus_url','http://login.vagr.com/menus');
-Configure::write('login_url', 'http://login.vagr.com/login');
+Configure::write('sistema_id','1'); // Codigo do sistema na tabela 'sistemas'
+Configure::write('menus_url','http://server.domain.com/menus');
+Configure::write('login_url', 'http://server.domain.com/login');
 ```
 
 Altere a Home da sua aplicação no Config/routes.php:
@@ -38,11 +38,9 @@ Router::connect('/', array('plugin'=>'Auth','controller' => 'pages', 'action' =>
 
 Acesse a base de dados e altere a senha do usuario "bootstrap" para a senha que aparece na tela inicial do sistema (gerada a partir do hash no seu servidor). A senha padrão será "authbootstrap" ( sem aspas ).
 
-Edite o arquivo Plugins/Ab/Controllers/AbAppController.php e comente a linha 42 para remover a mensagem sobre a senha inicial.
+Edite o arquivo Plugins/Admin/Controllers/AdminAppController.php e comente a linha 42 para remover a mensagem sobre a senha inicial.
 
 **Login**
 usuario: authbootstrap
 senha: authbootstrap
 
-
-** Tabelas **
