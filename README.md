@@ -18,7 +18,7 @@ Carregue o plugin da seguinte forma no arquivo Config/bootstrap.php:
 CakePlugin::load(
 	array(
 		'Bootstrap' => array('bootstrap'=>true,'routes' => true),
-		'Auth' => array('bootstrap'=>true,'routes' => true),
+		'Authen' => array('bootstrap'=>true,'routes' => true),
 		'Admin' => array('bootstrap'=>true,'routes' => true),
 		'Server' => array('bootstrap'=>true,'routes' => true),
 	)
@@ -33,7 +33,7 @@ Configure::write('login_url', 'http://server.domain.com/login');
 
 Altere a Home da sua aplicação no Config/routes.php:
 ```php
-Router::connect('/', array('plugin'=>'Auth','controller' => 'pages', 'action' => 'display', 'home'));
+Router::connect('/', array('plugin'=>'Authen','controller' => 'pages', 'action' => 'display', 'home'));
 ```
 
 Acesse a base de dados e altere a senha do usuario "bootstrap" para a senha que aparece na tela inicial do sistema (gerada a partir do hash no seu servidor). A senha padrão será "authbootstrap" ( sem aspas ).
