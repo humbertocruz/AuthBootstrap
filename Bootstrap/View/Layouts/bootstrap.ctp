@@ -3,7 +3,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php echo $this->Html->charset(); ?>
-        <title>Admin - <?php echo $title_for_layout; ?></title>
+        <title><?php echo $title_for_layout; ?></title>
         <?php
         echo $this->Html->meta( 'icon' );
 
