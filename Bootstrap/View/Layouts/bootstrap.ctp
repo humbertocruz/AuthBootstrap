@@ -39,6 +39,7 @@
             <?php echo $this->Session->flash( 'flash', array( 'element'=>'Bootstrap.flash' ) ); ?>
         	<?php echo $this->fetch( 'content' ); ?>
         </div>
+        <?php echo $this->Element( 'Bootstrap.navbar-bottom' ); ?>
         <?php echo $this->element('sql_dump'); ?>
     </body>
 </html>

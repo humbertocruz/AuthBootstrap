@@ -1,4 +1,6 @@
-<?php echo $this->Bootstrap->paginator($this->Paginator); ?>
+<?php if (isset($this->Paginator)) {
+	echo $this->Bootstrap->paginator($this->Paginator);
+	} ?>
 <div class="panel panel-<?php echo $state; ?>">
  	<div class="panel-heading">
   		<?php echo $title; ?>
