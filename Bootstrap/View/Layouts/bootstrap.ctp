@@ -24,12 +24,12 @@
         ?>
     </head>
     <body>
-        <?php 
-            if (isset($menus)) {
-                echo $this->Element( 'Bootstrap.navbar-top' ); 
-            }
-        ?>
         <div class="container">
+	        <?php 
+    	        if (isset($menus)) {
+        	        echo $this->Element( 'Bootstrap.navbar-top' ); 
+				}
+			?>
             <?php if (isset( $init_password ) ) { ?>
             <div class="alert alert-danger">
                 <h4>Senha Inicial para o usuario "bootstrap"</h4>
@@ -38,8 +38,8 @@
             <?php } ?>
             <?php echo $this->Session->flash( 'flash', array( 'element'=>'Bootstrap.flash' ) ); ?>
         	<?php echo $this->fetch( 'content' ); ?>
+			<?php echo $this->Element( 'Bootstrap.navbar-bottom' ); ?>
         </div>
-        <?php echo $this->Element( 'Bootstrap.navbar-bottom' ); ?>
         <?php echo $this->element('sql_dump'); ?>
     </body>
 </html>
