@@ -3,12 +3,7 @@
 	} ?>
 <div class="panel panel-<?php echo $state; ?>">
  	<div class="panel-heading">
-  		<?php echo $title; ?>
+  		<h3 class="panel-title"><?php echo $title; ?></h3>
  	</div>
-	<table class="table table-striped table-hover">
-	<tr class="panel">
-		<th class="col-md-1">&nbsp;</th>
-		<?php foreach ($fields as $field) { ?>
-			<th><?php echo $field; ?></th>
-		<?php } ?>
-	</tr>
+ 	<div class="panel-body">
+		<table class="table table-striped table-hover table-bordered">
