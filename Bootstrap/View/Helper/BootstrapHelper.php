@@ -87,6 +87,43 @@ class BootstrapHelper extends AppHelper {
 		<?php return ob_get_clean(); 
 	}
 	
+	public function belongs($name, $options = array()) {
+
+		$options = array_merge(
+			array(
+				'label' => $name,
+				'value' => (isset($this->request->data[Inflector::classify( $this->params['controller'])][$name]))?($this->request->data[Inflector::classify( $this->params['controller'])][$name]):(''),
+				'options' => array(),
+				'id' => Inflector::classify( $this->params['controller']).$name,
+				'disabled'=>'',
+				'url'=>'',
+				'hide'=>''
+			),
+			$options
+		);
+		$hide = ($options['hide'] === 'hide')?('none'):('block');
+		ob_start(); ?>
+		<div class="form-group" style="display:<?php echo $hide;?>">
+			<lable><?php echo $options['label']; ?></lable>
+			<div class="row">
+				<div class="col-md-11">
+					<select <?php echo $options['disabled'];?> id="<?php echo $options['id'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]">
+						<?php foreach ($options['options'] as $key => $value) { 
+							$selected = ($key == $options['value'])?('selected="selected"'):('');
+						?>
+						<option <?php echo $selected; ?> value="<?php echo $key;?>"><?php echo $value;?></option>
+						<?php } ?>
+					</select>
+				</div>
+				<div class="col-md-1">
+					<a href="#" class="btn btn-success btn-belongs" data-plugin="<?php echo strtolower( $this->plugin ); ?>" data-url="<?php echo $options['url'];?>"><span class="glyphicon glyphicon-list-alt"></a>
+				</div>
+			</div>
+		</div>
+
+		<?php return ob_get_clean(); 
+	}
+	
 	public function text($name, $options = array()) {
 		
 		$options = array_merge(
