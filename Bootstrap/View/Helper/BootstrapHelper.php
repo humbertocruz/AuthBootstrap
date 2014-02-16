@@ -65,14 +65,15 @@ class BootstrapHelper extends AppHelper {
 				'value' => (isset($this->request->data[Inflector::classify( $this->params['controller'])][$name]))?($this->request->data[Inflector::classify( $this->params['controller'])][$name]):(''),
 				'options' => array(),
 				'id' => Inflector::classify( $this->params['controller']).$name,
-				'disabled'=>''
+				'disabled'=>'',
+				'hide'=>''
 			),
 			$options
 		);
-		//pr($options);
+		$hide = ($options['hide'] === 'hide')?('none'):('block');
 		ob_start(); ?>
 
-		<div class="form-group">
+		<div class="form-group" style="display:<?php echo $hide;?>">
 			<lable><?php echo $options['label']; ?></lable>
 			<select <?php echo $options['disabled'];?> id="<?php echo $options['id'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]">
 			<?php foreach ($options['options'] as $key => $value) { 
@@ -114,21 +115,23 @@ class BootstrapHelper extends AppHelper {
 			array(
 				'options' => array(),
 				'id' => Inflector::classify( $this->params['controller']).$name,
-				'value' => (isset($this->request->data[Inflector::classify( $this->params['controller'] )][$name]))?($this->request->data[Inflector::classify( $this->params['controller'] )][$name]):('')
+				'value' => (isset($this->request->data[Inflector::classify( $this->params['controller'] )][$name]))?($this->request->data[Inflector::classify( $this->params['controller'] )][$name]):($options['value'])
 			),
 			$options
 		);
 		
 		ob_start(); ?>
-		
+		<div class="form-group">
 		<div class="radio <?php echo $options['id'];?>">
-			<?php foreach($options['options'] as $key=>$value) { ?>
-			<lable class="radio-inline">
-			<input id="<?php echo $options['id'];?>" type="radio" class="form-control" name="<?php echo $name; ?>" value="<?php echo $key;?>"><?php echo $value; ?>
-			</lable>
+			<?php foreach($options['options'] as $key=>$value) { 
+				$checked = ($key == $options['value'])?('checked="checked"'):('');
+			?>
+			<label>
+				<input <?php echo $checked; ?> id="<?php echo $options['id'];?>" type="radio" name="<?php echo $name; ?>" value="<?php echo $key;?>"> <?php echo $value; ?>
+			</label>
 			<?php } ?>
 		</div>
-
+		</div>
 		
 		<?php return ob_get_clean();
 	}
