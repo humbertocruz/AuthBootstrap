@@ -174,9 +174,10 @@ class BootstrapHelper extends AppHelper {
 	}
 
 	public function paginator($paginator) {  ob_start(); ?>
+		<?php //pr($paginator->pageCount); ?>
 		<ul class="pagination">
 			<li><a href="#">&laquo;</a></li>
-		<?php echo $this->Paginator->numbers(
+		<?php echo $paginator->numbers(
 			array(
 				'separator' => null,
 				'tag' => 'li',
