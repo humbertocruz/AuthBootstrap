@@ -42,16 +42,23 @@ class BootstrapHelper extends AppHelper {
 				'label' => $name,
 				'value' => (isset($this->request->data[Inflector::classify( $this->params['controller'] )][$name]))?($this->request->data[Inflector::classify( $this->params['controller'] )][$name]):(''),
 				'id' => Inflector::classify( $this->params['controller']).$name,
-				'type' => 'text'
+				'type' => 'text',
+				'disabled'=>null
 			),
 			$options
-		); 
+		);
+		
+		if ($options['disabled'] != null) {
+			$disabled = 'disabled="disabled"';
+		} else {
+			$disabled = '';
+		}
 
 		ob_start(); ?>
 
 		<div class="form-group">
 			<lable><?php echo $options['label']; ?></lable>
-			<input id="<?php echo $options['id'];?>" value="<?php echo $options['value'];?>" type="<?php echo $options['type'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]">
+			<input <?php echo $disabled; ?> id="<?php echo $options['id'];?>" value="<?php echo $options['value'];?>" type="<?php echo $options['type'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]">
 		</div>
 
 		<?php return ob_get_clean(); 
