@@ -4,7 +4,7 @@ App::uses('AppHelper', 'View/Helper');
 
 class BootstrapHelper extends AppHelper {
 
-	public $helpers = array('Html','Paginator','Form');
+	public $helpers = array('Html','Paginator','Form','Bootstrap.AuthBs');
 
 	public function pageHeader($header = '') { ob_start(); ?>
 
@@ -41,25 +41,42 @@ class BootstrapHelper extends AppHelper {
 			array(
 				'label' => $name,
 				'value' => (isset($this->request->data[Inflector::classify( $this->params['controller'] )][$name]))?($this->request->data[Inflector::classify( $this->params['controller'] )][$name]):(''),
+				'defaultValue' => '',
 				'id' => Inflector::classify( $this->params['controller']).$name,
 				'type' => 'text',
-				'disabled'=>null
+				'disabled'=>null,
+				'readonly'=>null
 			),
 			$options
 		);
+		// defaultValue se nao tiver valor 
+		if ($options['value'] == '') {
+			if ($options['defaultValue'] != '') {
+				$options['value'] = $options['defaultValue'];
+			}
+		}
 		
 		if ($options['disabled'] != null) {
 			$disabled = 'disabled="disabled"';
 		} else {
 			$disabled = '';
 		}
+		
+		if ($options['readonly'] != null) {
+			$readonly = 'readonly="readonly"';
+		} else {
+			$readonly = '';
+		}
 
 		ob_start(); ?>
-
+		<?php if ($options['type'] != 'hidden') { ?>
 		<div class="form-group">
 			<lable><?php echo $options['label']; ?></lable>
-			<input <?php echo $disabled; ?> id="<?php echo $options['id'];?>" value="<?php echo $options['value'];?>" type="<?php echo $options['type'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]">
+		<?php } ?>
+			<input <?php echo $readonly; ?> <?php echo $disabled; ?> id="<?php echo $options['id'];?>" value="<?php echo $options['value'];?>" type="<?php echo $options['type'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]">
+		<?php if ($options['type'] != 'hidden') { ?>
 		</div>
+		<?php } ?>
 
 		<?php return ob_get_clean(); 
 	}
@@ -146,7 +163,7 @@ class BootstrapHelper extends AppHelper {
 		
 		<div class="form-group">
 			<lable><?php echo $options['label']; ?></lable>
-			<textarea id="<?php echo $options['id'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]"><?php echo $options['value'];?></textarea>
+			<textarea rows="10" id="<?php echo $options['id'];?>" class="form-control" name="data[<?php echo Inflector::classify( $this->params['controller']);?>][<?php echo $name; ?>]"><?php echo $options['value'];?></textarea>
 		</div>
 
 		

@@ -10,6 +10,7 @@ App::uses('AppHelper', 'View/Helper');
 class AuthBsHelper extends AppHelper {
 
 	public function brdate( $date = null ) {
+		
 		$date = new DateTime( $date );
 		return $date->format( 'd/m/Y' );
 	}
