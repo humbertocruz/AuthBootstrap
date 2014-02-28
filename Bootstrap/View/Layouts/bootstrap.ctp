@@ -8,7 +8,9 @@
         echo $this->Html->meta( 'icon' );
 
         // jQuery
-        echo $this->Html->script( 'Bootstrap./bootstrap/jquery-2.1.0.min.js');
+        echo $this->Html->script( 'Bootstrap./bootstrap/jquery-2.1.0.min');
+        // MaskedInput
+        echo $this->Html->script( 'Bootstrap.jquery.inputmask.bundle.min' );
 
         // Bootstrap
         echo $this->Html->css( 'Bootstrap./bootstrap/css/bootstrap.min' );
