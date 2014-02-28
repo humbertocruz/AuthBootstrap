@@ -60,8 +60,11 @@
 		<form method="post" class="navbar-form navbar-right" role="search">
         	<select class="form-control" name="data[Escolha][Projeto][id]" id="EscolhaProjetoId">
 				<option value="0">Escolha o Projeto</option>
-				<option value="1">Projeto A</option>
-				<option value="2">Projeto B</option>
+				<?php foreach($escolha_projetos as $key=>$value) { 
+					$escolhido = ($key == $escolhido_projeto_id)?('selected="selected"'):('');
+				?>
+				<option <?php echo $escolhido;?> value="<?php echo $key; ?>"><?php echo $value; ?></option>
+				<?php } ?>
 			</select>
 		</form>
 	</div>
