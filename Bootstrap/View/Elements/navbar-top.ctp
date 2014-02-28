@@ -57,6 +57,13 @@
 				</ul>
 			</li>
 		</ul>
+		<form method="post" class="navbar-form navbar-right" role="search">
+        	<select class="form-control" name="data[Escolha][Projeto][id]" id="EscolhaProjetoId">
+				<option value="0">Escolha o Projeto</option>
+				<option value="1">Projeto A</option>
+				<option value="2">Projeto B</option>
+			</select>
+		</form>
 	</div>
 </nav>
 <?php //} ?>
