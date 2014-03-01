@@ -8,4 +8,13 @@ $(document).ready(function(){
 	$('#EscolhaProjetoId').change(function(){
 		$(this).parent().submit();
 	});
+	
+	// Teclas de Atalho
+	
+	/*
+	$(document).on('keypress', null, 'c', function(){
+		location.href = '/caritas/chamadas/add'	
+	}
+	);
+	*/
 });
