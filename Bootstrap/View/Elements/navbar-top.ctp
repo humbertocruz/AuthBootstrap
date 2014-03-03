@@ -54,12 +54,13 @@
 					<li><a href="/logout">Sair</a></li>
 					<li><a href="#">Alterar Dados</a></li>
 					<li class="divider"></li>
-					<li><a href="#">Perfil</a></li>
+					<li><a href="#">Chamadas em Aberto</a></li>
 				</ul>
 			</li>
 		</ul>
 		<form method="post" class="navbar-form navbar-right" role="search">
-        	<select class="form-control" name="data[Escolha][Projeto][id]" id="EscolhaProjetoId">
+		<?php if (count($escolha_projetos) > 1) { ?>
+			<select class="form-control" name="data[Escolha][Projeto][id]" id="EscolhaProjetoId">
 				<option value="0">Escolha o Projeto</option>
 				<?php foreach($escolha_projetos as $key=>$value) { 
 					$escolhido = ($key == $escolhido_projeto_id)?('selected="selected"'):('');
@@ -67,6 +68,7 @@
 				<option <?php echo $escolhido;?> value="<?php echo $key; ?>"><?php echo $value; ?></option>
 				<?php } ?>
 			</select>
+		<?php } ?>
 		</form>
 		<?php } ?>
 	</div>
