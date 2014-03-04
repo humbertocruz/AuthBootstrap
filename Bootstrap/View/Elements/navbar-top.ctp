@@ -21,7 +21,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="/">Admin</a>
+		<a class="navbar-brand" href="/">Cáritas</a>
 	</div>
 
 	<!-- Collect the nav links, forms, and other content for toggling -->
@@ -52,9 +52,14 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $usuario['nome'];?> <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="/logout">Sair</a></li>
-					<li><a href="#">Alterar Dados</a></li>
+					<li><?php echo $this->Html->link('Alterar Dados', array('plugin'=>'caritas', 'controller'=>'atendentes', 'action'=>'edit')); ?></li>
 					<li class="divider"></li>
-					<li><?php echo $this->Html->link('Chamadas em Aberto <span class="badge badge-info">'.$emaberto.'</span>', array('controller'=>'atendentes','action'=>'emaberto'), array('escape'=>FALSE));?></li>
+					<li><?php echo $this->Html->link('Chamadas em Aberto <span class="badge badge-error">'.$emaberto.'</span>', array('controller'=>'atendentes','action'=>'emaberto'), array('escape'=>FALSE));?></li>
+					<li><a href="#">Nível: <?php echo $usuario['NiveisAcesso']['nome'];?></a></li>
+					<?php if ($usuario['NiveisAcesso']['nome'] == 'Administrador') { ?>
+					<li class="divider"></li>
+					<li><?php echo $this->Html->link('Administração', array('plugin'=>'admin', 'controller'=>'panel', 'action'=>'index')); ?></li>
+					<?php } ?>
 				</ul>
 			</li>
 		</ul>
