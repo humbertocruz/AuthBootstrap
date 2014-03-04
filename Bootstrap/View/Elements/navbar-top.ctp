@@ -54,7 +54,7 @@
 					<li><a href="/logout">Sair</a></li>
 					<li><a href="#">Alterar Dados</a></li>
 					<li class="divider"></li>
-					<li><a href="#">Chamadas em Aberto</a></li>
+					<li><?php echo $this->Html->link('Chamadas em Aberto <span class="badge badge-info">'.$emaberto.'</span>', array('controller'=>'atendentes','action'=>'emaberto'), array('escape'=>FALSE));?></li>
 				</ul>
 			</li>
 		</ul>

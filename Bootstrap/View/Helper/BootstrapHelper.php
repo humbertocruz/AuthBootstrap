@@ -233,6 +233,22 @@ class BootstrapHelper extends AppHelper {
 	<?php return ob_get_clean();	
 	}
 	
+	public function chamadaAtendenteActions($id = 1) { ob_start(); ?>
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			Ações&nbsp;<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><?php echo $this->Html->Link('Editar', array('controller'=>'chamadas', 'action'=>'edit', $id));?></li>
+				<li><?php echo $this->Form->postLink('Excluir', array('controller'=>'chamadas', 'action'=>'del', $id), null, 'Tem Certeza?');?></li>
+				<li class="divider"></li>
+				<li><?php echo $this->Html->Link('Adicionar Filha', array('controller'=>'chamadas', 'action'=>'add', $id));?></li>
+				<li><?php echo $this->Html->Link('Finalizar', array('controller'=>'chamadas', 'action'=>'finalizar', $id));?></li>
+			</ul>
+		</div>
+	<?php return ob_get_clean();	
+	}
+	
 	public function chamadaFilhaActions($id = 1) { ob_start(); ?>
 		<div class="btn-group">
 			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -260,5 +276,19 @@ class BootstrapHelper extends AppHelper {
 		</div>
 	<?php return ob_get_clean();	
 	}
+	
+	public function atendenteActions($id = 1) { ob_start(); ?>
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			Ações&nbsp;<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><?php echo $this->Html->Link('Editar', array('action'=>'edit', $id));?></li>
+				<li><?php echo $this->Form->postLink('Excluir', array('action'=>'del', $id), null, 'Tem Certeza?');?></li>
+			</ul>
+		</div>
+	<?php return ob_get_clean();	
+	}
+
 
 }
