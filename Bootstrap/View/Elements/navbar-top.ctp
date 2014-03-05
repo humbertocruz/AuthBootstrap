@@ -46,7 +46,7 @@
 			<?php } ?>
 			<?php } ?>
 		</ul>
-		<?php if (AuthComponent::user()) { ?>
+		<?php if (AuthComponent::user()) { ; ?>
 		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $usuario['nome'];?> <b class="caret"></b></a>

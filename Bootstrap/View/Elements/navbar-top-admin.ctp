@@ -28,7 +28,7 @@
 	<div class="collapse navbar-collapse">
 		<ul class="nav navbar-nav navbar-left">
 			<li><a href="/">Home</a></li>
-			<?php if (!empty($menus)) { 
+			<?php if (!empty($menus) and $usuario) { 
 				$adminMenus = $menus[0];
 			?>
 			<?php foreach ($adminMenus['Links'] as $link) { ?>

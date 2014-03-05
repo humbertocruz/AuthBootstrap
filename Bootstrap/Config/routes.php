@@ -1,3 +1,3 @@
 <?php
 
-Router::connect('/logout', array('plugin'=>'Caritas', 'controller' => 'Atendentes', 'action' => 'logout'));
+Router::connect('/logout', array('plugin'=>'Admin', 'controller' => 'Atendentes', 'action' => 'logout'));
